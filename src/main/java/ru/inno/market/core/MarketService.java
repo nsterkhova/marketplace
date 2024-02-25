@@ -9,10 +9,12 @@ public class MarketService {
 
     private int orderCounter;
     private Map<Integer, Order> orders;
+    Catalog catalog;
 
     public MarketService() {
         orderCounter = 0;
         orders = new HashMap<>();
+        catalog = new Catalog();
     }
 
     public int createOrderFor(Client client){
@@ -23,8 +25,8 @@ public class MarketService {
         return order.getId();
     }
 
-    public void addItemToOrder(Item item, int orderId ){
-        orders.get(orderId).addItem(item);
+    public void addItemToOrder(int itemId, int orderId ){                     //Закрыла возможность добавить товар не из каталога, теперь метод принимает на вход itemId вместо Item
+        orders.get(orderId).addItem(catalog.getItemById(itemId));
     }
 
     public double applyDiscountForOrder(int orderId, PromoCodes codes){

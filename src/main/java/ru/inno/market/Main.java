@@ -18,7 +18,7 @@ public class Main {
         Client client = new Client(1, "Dima");
         Item item =  catalog.getItemById(1);
         int id = service.createOrderFor(client);
-        service.addItemToOrder(item, id);
+        service.addItemToOrder(item.getId(), id);
         service.applyDiscountForOrder(id, PromoCodes.FIRST_ORDER);
         Order order = service.getOrderInfo(id);
 
